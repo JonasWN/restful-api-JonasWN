@@ -1,14 +1,25 @@
 #!/usr/bin/env node
+
 const express = require("express");
 const app = express();
 const router = express.Router();
-const { debugLogger, log } = require("../middleware/logger");
-const { join } = require("path");
-const { readdir } = require("fs");
+const {
+	debugLogger,
+	log
+} = require("../middleware/logger");
+const {
+	join
+} = require("path");
+const {
+	readdir
+} = require("fs");
+const formidable = require("express-formidable");
 
+
+router.use(formidable());
 router.use(debugLogger);
 
-readdir(join(__dirname, "..", "routes"), function(err, files) {
+readdir(join(__dirname, "..", "routes"), function (err, files) {
 	if (err) return log.error(err.stack);
 	files.forEach(file => {
 		require(join(__dirname, "..", "routes", file))(router);
