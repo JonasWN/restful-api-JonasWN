@@ -1,6 +1,6 @@
 const {
     getAllProducts,
-    getSingleProduct,
+    singleProduct,
     deleteProduct,
     UpdateProducts,
     createProduct
@@ -15,7 +15,7 @@ module.exports = (router) => {
 
     router.get("/products", getAllProducts);
 
-    router.get("/products/:sku", getSingleProduct);
+    router.get("/products/:sku", singleProduct);
 
     router.delete("/products/:sku", deleteProduct);
 
