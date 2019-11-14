@@ -14,8 +14,10 @@ const {
 	readdir
 } = require("fs");
 const formidable = require("express-formidable");
+const cors = require("cors");
 
 
+router.use(cors());
 router.use(formidable());
 router.use(debugLogger);
 
