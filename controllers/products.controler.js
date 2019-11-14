@@ -119,8 +119,15 @@ exports.singleProduct = async function (req, res) {
 // Get all products async
 exports.getAllProducts = async function (req, res) {
     try {
+        let docs;
+        if (req.query.catagory) {
+            docs = await ProductRef.where("catagory", "==", req.query.catagory).get();
+
+        } else {
+            docs = await ProductRef.get()
+        }
         const results = [];
-        const docs = await ProductRef.get()
+
         docs.forEach(doc => results.push(doc.data()));
         res.json(results);
     } catch (error) {
@@ -128,6 +135,15 @@ exports.getAllProducts = async function (req, res) {
         log.error(error.stack);
     }
 };
+
+exports.getProductsByCategory = async (req, res) => {
+    try {
+
+    } catch (error) {
+        log.error(error.stack);
+        res.status(500).end();
+    }
+}
 
 
 // DELETE Async
